@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="XYmap3.css">
+<link rel="stylesheet" href="jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+<script src="jquery-3.3.1.js"></script>
+<script src="jquery-jvectormap-2.0.3.min.js"></script>
+<script src="jquery-jvectormap-fr_regions_2016-mill.js"></script>
+<script src="jquery-jvectormap-europe-mill.js"></script>
+<script src="jquery-jvectormap-continents-mill.js"></script>
+<script src="gdp-data.js"></script>
+<script src="categorie.js"></script>
+</head>
+<body>
+<div class="bar">
+    <div id="link" onclick="window.location='http://www.mea-spatium.com/map/UE-GAME.php';">QUIZ</div>
+    <div id="link-gauche" onclick="window.location='http://www.mea-spatium.com/map/UE-PIB.html';">PIB</div>
+</div>
+<div id="map2" style="width: 600px; height: 400px; margin-top: 150px; margin: 0 auto;"></div>
+<script type="text/javascript">
+    $(function(){
+        $('#map2').vectorMap({
+        map: 'europe_mill',
+        series: {
+        regions: [{
+        values: cat,
+        scale: {
+            '1': '#efe8ef',
+            '2': '#f5c4f5',
+            '3': '#f399f3',
+            '4': '#ea58ea',
+            '5': '#ff00ff',
+        }, 
+        normalizeFunction: 'polynomial'
+    }]
+        
+  },
+  onRegionTipShow: function(e, el, code){
+    el.html(el.html()+' (PIB - '+PIB[code]+' mds€)');
+  },
+        onRegionClick: function(event, code)
+      {
+          if (code == 'FR') {
+              alert("C'est cool");
+          }
+      }
+  });
+    });
+  
+</script>
+</body>
+</html>
+
